@@ -92,7 +92,11 @@ function buildCharts(sample) {
     }];
     // 9. Create the layout for the bar chart. 
     var barLayout = {
-      title: "Top 10 Bacteria Cultures Found"
+      title:{text: "Top 10 Bacteria Cultures Found",
+        font: {size: 24, family: "Arial"}},
+      font:{size: 10, family:"Arial"}
+
+
      
     };
     // 10. Use Plotly to plot the data with the layout. 
@@ -114,13 +118,62 @@ function buildCharts(sample) {
 
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
-      title: "Bacteria Cultures Per Sample",
-      xaxis: {title: "OTU ID"}
+      title: {text:"Bacteria Cultures Per Sample", font:{size: 24, family:"Arial"}},
+      xaxis: {title: "OTU ID"},
+      font: {size: 10, family:"Arial"}
     
     };
 
     // 3. Use Plotly to plot the data with the layout.
-    Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
+    Plotly.newPlot("bubble", bubbleData, bubbleLayout);
+  
+    // Create the gauge chart
+
+    // Create a variable to hold the metadata array 
+    var metadata = data.metadata 
+
+    // Filter the data for the object with the desired sample number
+    var metaArray = metadata.filter(sampleObj => sampleObj.id == sample);
+    var washer = metaArray[0];
+    
+    // Access the wash frquency 
+    var washFrequency = parseFloat(washer.wfreq);
+    console.log(washFrequency);
+
+    // Create the wash frequency data object
+
+    var washData = [{
+      value: washFrequency,
+      type: "indicator",
+      mode: "gauge+number",
+      gauge: { 
+        axis: { range: [null, 10], tickWidth:1 },
+        bar: {color: "black"},
+        steps: [
+          {range: [0,2], color:"red"},
+          {range: [2,4], color:"orange"},
+          {range: [4,6], color: "yellow"},
+          {range: [6,8], color: "green"},
+          {range: [8,10], color: "blue"}
+        ]
+      },
+      title:{ text:"Scrubs Per Week" },
+    }];
+
+    var washLayout = {
+      title: {text: "Belly Button Washing Frequency", 
+        font:{family:"Arial", size: 24}},
+      width: 550,
+      height: 450,
+      font:{ family:"Arial", size: 18}
+
+    };
+
+    // Plot the chart
+  
+    Plotly.newPlot("gauge", washData, washLayout);
+
+    
     
   });
   

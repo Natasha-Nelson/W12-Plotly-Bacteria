@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Challenge</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -16,6 +17,7 @@
       <div class="col-md-12 jumbotron text-center">
         <h1>Belly Button Biodiversity Dashboard</h1>
         <p>Use the interactive charts below to explore the dataset</p>
+        <p>Choose your subject ID number using the dropdown menu</p>
       </div>
     </div>
     <div class="row">
@@ -34,14 +36,17 @@
       </div>
       <div class="col-md-5">
         <div id="bar"></div>
+        <p style="text-align:center">This bar chart displays the bacteria with the highest sample values.<br> Hover over each to see the full name displayed.</p>
       </div>
       <div class="col-md-5">
-        <div id="gauge"></div>
+        <div id="gauge" style="margin-left:auto"></div>
+        <p style="text-align:center">Should be scrubbing more often? The gauge above represents the subject's wash frequency.</p>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div id="bubble"></div>
+        <p>The bubble chart above displays all of the bacteria samples found for this test subeject. Each bubble represents a different type of bacteria. The different sizes are representative of the sample values.</p>
       </div>
     </div>
   </div>
