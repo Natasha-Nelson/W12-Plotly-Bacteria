@@ -28,7 +28,7 @@ init();
 function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildMetadata(newSample);
-  //buildCharts(newSample);
+  buildCharts(newSample);
   
 }
 
@@ -97,6 +97,31 @@ function buildCharts(sample) {
     };
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", barData, barLayout);
+
+    //Create a bubble chart!
+
+    // 1. Create the trace for the bubble chart.
+    var bubbleData = [{
+      x: otuIds,
+      y: sampleValues,
+      mode: "markers",
+      marker:{
+        size: sampleValues,
+        color: otuIds
+      },
+      text: otuLabels
+    }];
+
+    // 2. Create the layout for the bubble chart.
+    var bubbleLayout = {
+      title: "Bacteria Cultures Per Sample",
+      xaxis: {title: "OTU ID"}
+    
+    };
+
+    // 3. Use Plotly to plot the data with the layout.
+    Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
     
   });
+  
 }
